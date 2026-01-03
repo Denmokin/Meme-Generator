@@ -1,15 +1,15 @@
 /* Setup */
-@import url(/styles/setup/base.css);
-@import url(/styles/setup/helpers.css);
-@import url(/styles/setup/layout.css);
+@import url('setup/base.css');
+@import url('setup/helpers.css');
+@import url('setup/layout.css');
 
 /*Basics*/
-@import url(/styles/basics/vars.css);
-@import url(/styles/basics/typography.css);
+@import url('basics/vars.css');
+@import url('basics/typography.css');
 
 /*Components*/
-@import url(/styles/components/app-container.css);
+@import url('components/app-container.css');
 
 
 /*MQ*/
-@import url(/styles/setup/mq.css);
+@import url('setup/mq.css');
