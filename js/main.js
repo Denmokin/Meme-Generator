@@ -31,7 +31,7 @@ function onTextEdit(ev) {
 function renderMeme() {
     const meme = getMeme()
     const elImg = new Image()
-    elImg.src = `/memes/${meme.selectedImgId}.jpg`
+    elImg.src = `memes/${meme.selectedImgId}.jpg`
 
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)

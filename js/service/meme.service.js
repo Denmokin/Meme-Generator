@@ -1,8 +1,8 @@
 'use strict'
 
 var gImgs = [
-    { id: 1, url: '/memes/1.jpg', keywords: ['funny', 'trump'] },
-    { id: 2, url: '/memes/2.jpg', keywords: ['cute', 'dogs'] },
+    { id: 1, url: 'memes/1.jpg', keywords: ['funny', 'trump'] },
+    { id: 2, url: 'memes/2.jpg', keywords: ['cute', 'dogs'] },
 ]
 
 var gMeme = {
