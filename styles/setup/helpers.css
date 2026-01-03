@@ -1,0 +1,40 @@
+.flex {
+    display: flex;
+
+    &.space-between {
+        justify-content: space-between;
+    }
+
+    &.align-center {
+        align-items: center;
+    }
+
+    &.flex-column {
+        flex-direction: column;
+    }
+
+}
+
+
+.grid {
+    display: grid;
+
+    &.space-between {
+        justify-content: space-between;
+    }
+
+    &.align-center {
+        align-items: center;
+    }
+
+    &.grid-column {
+        grid-auto-flow: column;
+    }
+}
+
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}

@@ -5,16 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="styles/main.css">
 
 </head>
 
-<body>
+<body onload="onInit()">
     <h1>Meme Generator</h1>
 
-    <section class="app-container"></section>
+    <section class="app-container">
+
+        <div class="canvas-container">
+            <canvas width="250" height="250"></canvas>
+        </div>
+        <div class="dashboard">
+            <form onsubmit="onTextEdit(event)">
+                <input name="text" type="text">
+                <button>save</button>
+            </form>
+            <div class="memes"></div>
+        </div>
+
+    </section>
 
     <script src="/js/main.js"></script>
+    <script src="/js/service/meme.service.js"></script>
+    <script src="/js/service/util.service.js"></script>
+
 </body>
 
 </html>

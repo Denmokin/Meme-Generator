@@ -1,0 +1,14 @@
+.app-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-top: 1em;
+    border: 1px solid var(--black);
+}
+
+.dashboard {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
