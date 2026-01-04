@@ -21,7 +21,6 @@ function resizeCanvas() {
     const gElCanvasContainer = document.querySelector('.canvas-container')
     gElCanvasContainer.width = gElCanvas.width + 'px'
     gElCanvasContainer.height = gElCanvas.height + 'px'
-    console.log('gElCanvasContainer.width: ', gElCanvasContainer.width)
 }
 
 function syncFormDefaults() {
