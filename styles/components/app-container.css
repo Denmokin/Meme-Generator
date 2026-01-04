@@ -6,7 +6,7 @@
     border: 1px solid var(--black);
 }
 
-.dashboard {
+.app-dashboard {
     display: grid;
     align-items: center;
     justify-content: center;

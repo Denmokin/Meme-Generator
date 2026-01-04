@@ -9,7 +9,8 @@
 
 /*Components*/
 @import url('components/app-container.css');
+@import url('components/img-selector.css');
 
 
 /*MQ*/
-@import url('setup/mq.css');
+/* @import url('setup/mq.css'); */

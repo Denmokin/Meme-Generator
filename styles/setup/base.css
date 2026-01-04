@@ -27,3 +27,35 @@ body {
 img {
     width: 100%;
 }
+
+.btn {
+    /* reset */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    position: relative;
+    text-decoration: none;
+
+    border: 1px var(--black) solid;
+    padding: 0.6em 1.6em;
+
+    /* &:hover {
+        border: 1px var(--clr-primary-green) solid;
+        color: var(--clr-primary-green);
+    } */
+
+    /* round btns */
+    &.round {
+        border-radius: 2em;
+    }
+
+    /* No border */
+    &.no-border {
+        border: 0;
+    }
+
+}

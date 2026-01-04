@@ -17,12 +17,17 @@
         <div class="canvas-container">
             <canvas width="250" height="250"></canvas>
         </div>
-        <div class="dashboard">
-            <form onsubmit="onTextEdit(event)">
+        <div class="app-dashboard">
+
+            <form class="meme-form">
                 <input name="text" type="text">
-                <button>save</button>
+                <input name="color" type="color">
+                <button name="size" type="button" value="1">+</button>
+                <button name="size" type="button" value="-1">-</button>
             </form>
-            <div class="memes"></div>
+
+            <div class="select-img-container flex align-center space-between"></div>
+            <a onclick="onDownloadMeme(this)" class="btn" href="#">Download</a>
         </div>
 
     </section>

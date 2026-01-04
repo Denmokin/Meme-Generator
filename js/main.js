@@ -7,25 +7,47 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
+    syncFormDefaults()
     addListeners()
+    resizeCanvas()
     renderMeme()
 }
 
 function addListeners() {
-
+    formListener()
 }
 
-//////////// - memeController - //////////////
-
-function onTextEdit(ev) {
-    ev.preventDefault()
-    let form = ev.target
-    const formData = new FormData(form)
-    let value = formData.get('text')
-    console.log('value: ', value)
-    setLineTxt(value)
+function resizeCanvas() {
+    const gElCanvasContainer = document.querySelector('.canvas-container')
+    gElCanvasContainer.width = gElCanvas.width + 'px'
+    gElCanvasContainer.height = gElCanvas.height + 'px'
+    console.log('gElCanvasContainer.width: ', gElCanvasContainer.width)
 }
 
+function syncFormDefaults() {
+    const elForm = document.querySelector('.meme-form')
+    const line = gMeme.lines[0]
+    elForm.querySelector('[name="text"]').value = line.txt
+    elForm.querySelector('[name="color"]').value = line.color
+}
+
+function formListener() {
+    const elForm = document.querySelector('.meme-form')
+
+    elForm.addEventListener('input', (ev) => {
+        onTextEdit(ev, elForm)
+    })
+
+    elForm.addEventListener('click', (ev) => {
+        if (ev.target.name === 'size') onTextEdit(ev, elForm)
+    })
+}
+
+function onTextEdit(ev, elForm) {
+    const formData = new FormData(elForm)
+    const sizeDiff = (ev.target.name === 'size') ? ev.target.value : 0
+    setLineTxt(formData, sizeDiff)
+}
 
 
 function renderMeme() {
@@ -54,6 +76,8 @@ function drawText(meme, x, y) {
 }
 
 
+
+
 ///////- galleryController -///////// 
 
 function onImgSelect(id) {
@@ -61,12 +85,20 @@ function onImgSelect(id) {
 }
 
 function renderGallery() {
-    const elMemes = document.querySelector('.memes')
+    const elMemes = document.querySelector('.select-img-container')
     const memes = gImgs.map(meme =>
         `<img onclick="onImgSelect(${meme.id})" 
-        src="${meme.url}" 
-        style="width:80px; 
-        cursor:pointer;"/>`
+        src="${meme.url}"/>`
     ).join('')
     elMemes.innerHTML = memes
+}
+
+
+///// -- Dash Board -- //////
+
+function onDownloadMeme(el) {
+    var memeContent = gElCanvas.toDataURL();
+    console.log('memeContent: ', memeContent)
+    el.href = memeContent
+    el.download = 'myMeme'
 }

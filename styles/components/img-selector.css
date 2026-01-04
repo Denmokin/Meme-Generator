@@ -1,0 +1,6 @@
+.select-img-container {
+    >img {
+        width: 80px;
+        cursor: pointer;
+    }
+}

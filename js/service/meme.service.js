@@ -11,8 +11,8 @@ var gMeme = {
     lines: [
         {
             txt: 'I sometimes eat Falafel',
-            size: 20,
-            color: 'red'
+            size: '20',
+            color: '#ff0000'
         }
     ]
 }
@@ -21,8 +21,15 @@ function getMeme() {
     return gMeme
 }
 
-function setLineTxt(newText) {
-    gMeme.lines[0].txt = newText
+function setLineTxt(formData, sizeDiff) {
+    const line = gMeme.lines[0]
+
+    const newTxt = formData.get('text')
+    if (newTxt !== '') line.txt = newTxt
+
+    line.color = formData.get('color')
+
+    line.size = (+line.size) + (+sizeDiff)
     renderMeme()
 }
 
