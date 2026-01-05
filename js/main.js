@@ -6,6 +6,10 @@ let gCtx
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+
+    gMeme.lines[0].pos = { x: gElCanvas.width / 2, y: 50 }
+    gMeme.lines[1].pos = { x: gElCanvas.width / 2, y: gElCanvas.height - 50 }
+
     renderGallery()
     syncFormDefaults()
     addListeners()
@@ -25,7 +29,7 @@ function resizeCanvas() {
 
 function syncFormDefaults() {
     const elForm = document.querySelector('.meme-form')
-    const line = gMeme.lines[0]
+    const line = gMeme.lines[gMeme.selectedLineIdx]
     elForm.querySelector('[name="text"]').value = line.txt
     elForm.querySelector('[name="color"]').value = line.color
 }
@@ -40,6 +44,14 @@ function formListener() {
     elForm.addEventListener('click', (ev) => {
         if (ev.target.name === 'size') onTextEdit(ev, elForm)
     })
+
+    elForm.addEventListener('click', (ev) => {
+        if (ev.target.name === 'switch') onLineSwitch()
+    })
+
+    elForm.addEventListener('click', (ev) => {
+        if (ev.target.name === 'add') onAddLine()
+    })
 }
 
 function onTextEdit(ev, elForm) {
@@ -49,6 +61,14 @@ function onTextEdit(ev, elForm) {
 }
 
 
+function onLineSwitch() {
+    switchLine()
+}
+
+function onAddLine() {
+    addLine()
+}
+
 function renderMeme() {
     const meme = getMeme()
     const elImg = new Image()
@@ -56,28 +76,42 @@ function renderMeme() {
 
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawText(meme.lines[0], gElCanvas.width / 2, 210)
+
+        meme.lines.forEach((line, idx) => {
+            drawText(line)
+
+            // If Line selected --> add rectangle
+            if (idx === meme.selectedLineIdx) {
+                const width = gCtx.measureText(line.txt).width + 20
+                const height = (+line.size) + 20
+                drawRect(line.pos.x, line.pos.y, height, width, line.color)
+            }
+        })
     }
 }
 
 
-function drawText(meme, x, y) {
-
-    gCtx.lineWidth = 0
-    gCtx.strokeStyle = meme.color
-    gCtx.fillStyle = meme.color
-
-    gCtx.font = `${meme.size}px Ariel`;
+function drawText(line) {
+    gCtx.font = `${line.size}px Arial`
     gCtx.textAlign = 'center'
+    gCtx.textBaseline = 'middle'
 
-    gCtx.fillText(meme.txt, x, y)
-    gCtx.strokeText(meme.txt, x, y)
+    gCtx.fillStyle = line.color
+    gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+
+    gCtx.strokeStyle = 'black'
+    gCtx.lineWidth = 0.1
+    gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
 }
 
+function drawRect(x, y, height, width, color) {
+    gCtx.beginPath()
+    gCtx.strokeStyle = color
+    gCtx.lineWidth = 1
+    gCtx.strokeRect(x - width / 2, y - height / 2, width, height)
+}
 
-
-
-///////- galleryController -///////// 
+///////- Gallery Controller -///////// 
 
 function onImgSelect(id) {
     setImg(id)

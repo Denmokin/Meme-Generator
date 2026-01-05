@@ -15,15 +15,22 @@
     <section class="app-container">
 
         <div class="canvas-container">
-            <canvas width="250" height="250"></canvas>
+            <canvas width="300" height="300"></canvas>
         </div>
         <div class="app-dashboard">
 
             <form class="meme-form">
-                <input name="text" type="text">
-                <input name="color" type="color">
-                <button name="size" type="button" value="1">+</button>
-                <button name="size" type="button" value="-1">-</button>
+                <input name="text" type="text" class="area-text" placeholder="Type here...">
+
+                <button name="add" type="button" class="area-add">Add Line +</button>
+                <button name="switch" type="button" class="area-switch">Switch 🔄</button>
+
+                <input name="color" type="color" class="area-color">
+
+                <div class="area-size">
+                    <button name="size" type="button" value="2">A+</button>
+                    <button name="size" type="button" value="-2">A-</button>
+                </div>
             </form>
 
             <div class="select-img-container flex align-center space-between"></div>
