@@ -19,7 +19,29 @@ function onInit() {
 }
 
 
+function onTabSwitch(ev) {
+    const linkEl = ev.target
+    const page = ev.target.id
+    const elGallery = document.querySelector('.gallery-container')
+    const elMemes = document.querySelector('.app-container')
+    // const elAbout = document.querySelector('.about-container')
 
+    switch (page) {
+        case 'gallery':
+            elGallery.classList.remove('display-none')
+            elMemes.classList.add('display-none')
+            break;
+        case 'memes':
+            elMemes.classList.remove('display-none')
+            elGallery.classList.add('display-none')
+            break;
+
+        default:
+            console.log('omg: ', omg)
+            break;
+    }
+
+}
 
 
 

@@ -1,10 +1,5 @@
 'use strict'
 
-var gImgs = [
-    { id: 1, url: 'memes/1.jpg', keywords: ['funny', 'trump'] },
-    { id: 2, url: 'memes/2.jpg', keywords: ['cute', 'dogs'] },
-]
-
 var gMeme = {
     selectedImgId: 5,
     selectedLineIdx: 0,
@@ -118,12 +113,6 @@ function setLineTxt(formData, sizeDiff) {
     line.size = (+line.size) + (+sizeDiff)
     renderMeme()
 }
-
-function setImg(id) {
-    gMeme.selectedImgId = id
-    renderMeme()
-}
-
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 

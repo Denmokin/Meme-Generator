@@ -41,6 +41,15 @@
     list-style-type: none;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.active {
+    color: red !important;
+    text-decoration: underline !important;
 }

@@ -18,6 +18,11 @@
             text-decoration: underline;
         }
 
+        &:focus {
+            color: red;
+            text-decoration: underline;
+        }
+
     }
 
 }
