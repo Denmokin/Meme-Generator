@@ -55,25 +55,52 @@ function addLine() {
     renderMeme()
 }
 
-function isLineSelected(clickedPos) {
+
+function isLineHovered(pos) {
+    const hoveredLine = gMeme.lines.find(line => {
+
+        const halfWidth = line.width / 2
+        const halfHeight = (line.size / 2)
+
+        const isInsideX = pos.x >= line.pos.x - halfWidth &&
+            pos.x <= line.pos.x + halfWidth
+
+        const isInsideY = pos.y >= line.pos.y - halfHeight &&
+            pos.y <= line.pos.y + halfHeight
+
+
+        return isInsideX && isInsideY
+    })
+
+    // If Line is already selected don't add hover
+    const idx = gMeme.lines.findIndex(line => line === hoveredLine)
+
+    if (hoveredLine && gMeme.selectedLineIdx !== idx) {
+        gElCanvas.classList.add('pointer')
+    } else {
+        gElCanvas.classList.remove('pointer')
+    }
+}
+
+function isLineSelected(pos) {
 
     const selectedLine = gMeme.lines.findIndex(line => {
 
         const halfWidth = line.width / 2
         const halfHeight = (line.size / 2)
 
-        const isInsideX = clickedPos.x >= line.pos.x - halfWidth &&
-            clickedPos.x <= line.pos.x + halfWidth
+        const isInsideX = pos.x >= line.pos.x - halfWidth &&
+            pos.x <= line.pos.x + halfWidth
 
-        const isInsideY = clickedPos.y >= line.pos.y - halfHeight &&
-            clickedPos.y <= line.pos.y + halfHeight
+        const isInsideY = pos.y >= line.pos.y - halfHeight &&
+            pos.y <= line.pos.y + halfHeight
 
 
         return isInsideX && isInsideY
     })
 
     if (selectedLine === -1) return
-    
+
     gMeme.selectedLineIdx = selectedLine
     syncFormDefaults()
     renderMeme()
@@ -82,7 +109,7 @@ function isLineSelected(clickedPos) {
 function setLineTxt(formData, sizeDiff) {
     const line = gMeme.lines[gMeme.selectedLineIdx]
 
-    
+
     const newTxt = formData.get('text')
     if (newTxt !== '') line.txt = newTxt // If text is Empty do noting
 

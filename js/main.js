@@ -25,7 +25,8 @@ function addListeners() {
 
 
 function addMouseListeners() {
-    gElCanvas.addEventListener('click', onDown)
+    gElCanvas.addEventListener('click', onMouseClick)
+    gElCanvas.addEventListener('mousemove', onMouseMove)
 }
 
 function resizeCanvas() {
@@ -76,14 +77,19 @@ function onAddLine() {
     addLine()
 }
 
-function onDown(ev) {
+function onMouseClick(ev) {
     gStartPos = getEvPos(ev)
     isLineSelected(gStartPos)
 }
 
+function onMouseMove(ev) {
+    const pos = getEvPos(ev)
+    isLineHovered(pos)
+}
+
 
 function getEvPos(ev) {
-    console.log('x:', ev.offsetX, 'y:', ev.offsetY)
+    // console.log('x:', ev.offsetX, 'y:', ev.offsetY)
     return {
         x: ev.offsetX,
         y: ev.offsetY,
