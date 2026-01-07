@@ -2,6 +2,7 @@
 
 let gElCanvas
 let gCtx
+let gStartPos
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
@@ -19,6 +20,12 @@ function onInit() {
 
 function addListeners() {
     formListener()
+    addMouseListeners()
+}
+
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('click', onDown)
 }
 
 function resizeCanvas() {
@@ -69,6 +76,20 @@ function onAddLine() {
     addLine()
 }
 
+function onDown(ev) {
+    gStartPos = getEvPos(ev)
+    isLineSelected(gStartPos)
+}
+
+
+function getEvPos(ev) {
+    console.log('x:', ev.offsetX, 'y:', ev.offsetY)
+    return {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+}
+
 function renderMeme() {
     const meme = getMeme()
     const elImg = new Image()
@@ -102,6 +123,7 @@ function drawText(line) {
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 0.1
     gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
+    getTextWidth(line)
 }
 
 function drawRect(x, y, height, width, color) {

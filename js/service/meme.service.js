@@ -12,6 +12,7 @@ var gMeme = {
         {
             txt: 'I sometimes eat Falafel',
             size: 20,
+            width: 0,
             color: '#ff0000',
             pos: { x: 125, y: 50 }
         },
@@ -19,6 +20,7 @@ var gMeme = {
         {
             txt: 'And i love it',
             size: 15,
+            width: 0,
             color: '#000000',
             pos: { x: 80, y: 100 }
         }
@@ -53,11 +55,36 @@ function addLine() {
     renderMeme()
 }
 
+function isLineSelected(clickedPos) {
+
+    const selectedLine = gMeme.lines.findIndex(line => {
+
+        const halfWidth = line.width / 2
+        const halfHeight = (line.size / 2)
+
+        const isInsideX = clickedPos.x >= line.pos.x - halfWidth &&
+            clickedPos.x <= line.pos.x + halfWidth
+
+        const isInsideY = clickedPos.y >= line.pos.y - halfHeight &&
+            clickedPos.y <= line.pos.y + halfHeight
+
+
+        return isInsideX && isInsideY
+    })
+
+    if (selectedLine === -1) return
+    
+    gMeme.selectedLineIdx = selectedLine
+    syncFormDefaults()
+    renderMeme()
+}
+
 function setLineTxt(formData, sizeDiff) {
     const line = gMeme.lines[gMeme.selectedLineIdx]
 
+    
     const newTxt = formData.get('text')
-    if (newTxt !== '') line.txt = newTxt
+    if (newTxt !== '') line.txt = newTxt // If text is Empty do noting
 
     line.color = formData.get('color')
 
