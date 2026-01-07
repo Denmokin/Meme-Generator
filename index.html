@@ -7,12 +7,27 @@
     <title>Meme Generator</title>
     <link rel="stylesheet" href="styles/main.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+
 </head>
 
 <body onload="onInit()">
     <h1>Meme Generator</h1>
-
-    <section class="app-container">
+    <header class="main-header flex space-between align-center main-layout">
+        <div class="logo">MEME GEN v1.5</div>
+        <nav class="main-nav ">
+            <ul class="clean-list flex">
+                <li><a class="active" href="#">Gallery</a></li>
+                <li><a href="#">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="app-container main-layout">
 
         <div class="canvas-container">
             <canvas width="300" height="300"></canvas>
@@ -40,6 +55,8 @@
     </section>
 
     <script src="js/main.js"></script>
+    <script src="js/controller/meme.controller.js"></script>
+    <script src="js/controller/gallery.controller.js"></script>
     <script src="js/service/meme.service.js"></script>
     <script src="js/service/util.service.js"></script>
 

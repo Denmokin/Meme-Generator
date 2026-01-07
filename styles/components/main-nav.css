@@ -1,0 +1,23 @@
+.main-nav {
+
+    font-weight: 500;
+
+    ul {
+        gap: 1rem;
+    }
+
+    a {
+        display: grid;
+        place-items: center;
+
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            color: red;
+            text-decoration: underline;
+        }
+
+    }
+
+}

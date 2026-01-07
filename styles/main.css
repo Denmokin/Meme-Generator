@@ -8,6 +8,8 @@
 @import url('basics/typography.css');
 
 /*Components*/
+@import url('components/main-nav.css');
+@import url('components/main-header.css');
 @import url('components/app-container.css');
 @import url('components/img-selector.css');
 @import url('components/dashboard.css');
