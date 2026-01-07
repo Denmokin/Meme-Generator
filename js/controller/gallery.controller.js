@@ -1,6 +1,11 @@
 'use strict'
 
 function onImgSelect(id) {
+    // change page
+    const elMemes = document.querySelector('.app-container')
+    const elGallery = document.querySelector('.gallery-container')
+    elMemes.classList.remove('display-none')
+    elGallery.classList.add('display-none')
     setImg(id)
 }
 

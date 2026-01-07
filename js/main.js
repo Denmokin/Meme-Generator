@@ -30,6 +30,7 @@ function onTabSwitch(ev) {
         case 'gallery':
             elGallery.classList.remove('display-none')
             elMemes.classList.add('display-none')
+
             break;
         case 'memes':
             elMemes.classList.remove('display-none')
