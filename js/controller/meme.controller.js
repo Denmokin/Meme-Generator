@@ -90,14 +90,28 @@ function renderMeme() {
         meme.lines.forEach((line, idx) => {
             if (idx === meme.selectedLineIdx) {
                 gCtx.font = `${line.size}px ${line.font || 'Arial'}`
-                
+
                 const textWidth = gCtx.measureText(line.txt).width
                 const width = textWidth + 30
                 const height = line.size + 20
-                
+
                 drawRect(line.pos.x, line.pos.y, height, width, line.color)
             }
-            
+
+            drawText(line)
+        })
+    }
+}
+
+function renderMemeDownload() {
+    const meme = getMeme()
+    const elImg = new Image()
+    elImg.src = `memes/${meme.selectedImgId}.jpg`
+
+    elImg.onload = () => {
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+
+        meme.lines.forEach((line) => {
             drawText(line)
         })
     }
@@ -135,8 +149,12 @@ function drawRect(x, y, height, width, color) {
 }
 
 function onDownloadMeme(el) {
-    var memeContent = gElCanvas.toDataURL();
-    console.log('memeContent: ', memeContent)
-    el.href = memeContent
-    el.download = 'myMeme'
+    renderMemeDownload()
+    setTimeout(() => {
+        const memeContent = gElCanvas.toDataURL();
+        el.href = memeContent
+        el.download = 'myMeme'
+    }, 500)
+
 }
+
