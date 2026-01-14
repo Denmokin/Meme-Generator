@@ -20,29 +20,38 @@ function onInit() {
 
 
 function onTabSwitch(ev) {
-    const linkEl = ev.target
-    const page = ev.target.id
+    const pageId = ev.target.id
     const elGallery = document.querySelector('.gallery-container')
     const elMemes = document.querySelector('.app-container')
-    // const elAbout = document.querySelector('.about-container')
+    onUpdateNav(pageId)
 
-    switch (page) {
+
+    switch (pageId) {
         case 'gallery':
             elGallery.classList.remove('display-none')
             elMemes.classList.add('display-none')
-
             break;
+
         case 'memes':
             elMemes.classList.remove('display-none')
             elGallery.classList.add('display-none')
             break;
 
         default:
-            console.log('omg: ', omg)
+            console.log('omg')
             break;
     }
 
 }
 
+function onUpdateNav(pageId) {
+
+    const elNavLinks = document.querySelectorAll('.main-nav a')
+    elNavLinks.forEach(elLink => {
+        if (elLink.innerText.toLowerCase() === pageId)
+            elLink.classList.add('active')
+        else elLink.classList.remove('active')
+    })
+}
 
 
