@@ -57,6 +57,8 @@ function onLineSwitch() {
 
 function onAddLine() {
     addLine()
+    syncFormDefaults()
+
 }
 
 function onMouseClick(ev) {
@@ -77,7 +79,6 @@ function getEvPos(ev) {
         y: ev.offsetY,
     }
 }
-
 function renderMeme() {
     const meme = getMeme()
     const elImg = new Image()
@@ -87,17 +88,21 @@ function renderMeme() {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 
         meme.lines.forEach((line, idx) => {
-            drawText(line)
-
-            // If Line selected --> add rectangle
             if (idx === meme.selectedLineIdx) {
-                const width = gCtx.measureText(line.txt).width + 20
-                const height = (+line.size) + 20
+                gCtx.font = `${line.size}px ${line.font || 'Arial'}`
+                
+                const textWidth = gCtx.measureText(line.txt).width
+                const width = textWidth + 30
+                const height = line.size + 20
+                
                 drawRect(line.pos.x, line.pos.y, height, width, line.color)
             }
+            
+            drawText(line)
         })
     }
 }
+
 
 
 function drawText(line) {
@@ -109,16 +114,24 @@ function drawText(line) {
     gCtx.fillText(line.txt, line.pos.x, line.pos.y)
 
     gCtx.strokeStyle = 'black'
-    gCtx.lineWidth = 0.1
+    gCtx.lineWidth = 0.1923636
     gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
     getTextWidth(line)
 }
 
 function drawRect(x, y, height, width, color) {
+    const rectX = x - width / 2
+    const rectY = y - height / 2
+
+    gCtx.fillStyle = 'rgba(255, 255, 255, 0.45)'
+    gCtx.fillRect(rectX, rectY, width, height)
+
     gCtx.beginPath()
     gCtx.strokeStyle = color
     gCtx.lineWidth = 1
-    gCtx.strokeRect(x - width / 2, y - height / 2, width, height)
+    gCtx.setLineDash([10, 5])
+    gCtx.strokeRect(rectX, rectY, width, height)
+    gCtx.setLineDash([])
 }
 
 function onDownloadMeme(el) {
