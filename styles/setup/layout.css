@@ -1,3 +1,7 @@
 .main-layout {
-    width: 600px;
+    width: 40vw;
+}
+
+.gallery-layout {
+    width: 60vw;
 }

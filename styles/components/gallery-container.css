@@ -1,8 +1,8 @@
 .gallery-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1em;
+    height: fit-content;
     margin-top: 1em;
     padding: 1rem;
     border: 1px solid var(--black);
+    margin-block-end: 2rem;
 }

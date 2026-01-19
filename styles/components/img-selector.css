@@ -1,6 +1,11 @@
 .select-img-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 1rem;
+
     >img {
-        width: 80px;
+        width: 10rem;
+        object-fit: cover;
         cursor: pointer;
     }
 }

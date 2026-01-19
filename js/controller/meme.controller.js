@@ -79,26 +79,26 @@ function getEvPos(ev) {
         y: ev.offsetY,
     }
 }
+
 function renderMeme() {
     const meme = getMeme()
     const elImg = new Image()
     elImg.src = `memes/${meme.selectedImgId}.jpg`
 
     elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        document.fonts.ready.then(() => {
+            gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 
-        meme.lines.forEach((line, idx) => {
-            if (idx === meme.selectedLineIdx) {
-                gCtx.font = `${line.size}px ${line.font || 'Arial'}`
+            meme.lines.forEach((line, idx) => {
+                gCtx.font = `${line.size}px ${line.font || 'Ariel'}`
 
-                const textWidth = gCtx.measureText(line.txt).width
-                const width = textWidth + 30
-                const height = line.size + 20
+                if (idx === meme.selectedLineIdx) {
+                    const textWidth = gCtx.measureText(line.txt).width
+                    drawRect(line.pos.x, line.pos.y, line.size + 20, textWidth + 30, line.color)
+                }
 
-                drawRect(line.pos.x, line.pos.y, height, width, line.color)
-            }
-
-            drawText(line)
+                drawText(line)
+            })
         })
     }
 }
@@ -128,7 +128,7 @@ function renderMemeDownload() {
 
 
 function drawText(line) {
-    gCtx.font = `${line.size}px Arial`
+    gCtx.font = `${line.size}px ${line.font || 'Ariel'}`
     gCtx.textAlign = 'center'
     gCtx.textBaseline = 'middle'
 

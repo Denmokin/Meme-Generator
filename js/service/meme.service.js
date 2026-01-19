@@ -8,6 +8,7 @@ var gMeme = {
             txt: 'I sometimes eat Falafel',
             size: 20,
             width: 0,
+            font: 'Impact',
             color: '#ff0000',
             pos: { x: 125, y: 50 }
         },
@@ -16,6 +17,7 @@ var gMeme = {
             txt: 'And i love it',
             size: 15,
             width: 0,
+            font: 'Impact',
             color: '#000000',
             pos: { x: 80, y: 100 }
         }
@@ -43,6 +45,7 @@ function addLine() {
         txt: 'New Line',
         size: 12,
         color: '#ffffff',
+        font: 'Impact',
         pos: { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     }
     gMeme.lines.push(line)
