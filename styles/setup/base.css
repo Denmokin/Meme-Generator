@@ -43,10 +43,10 @@ img {
     border: 1px var(--black) solid;
     padding: 0.6em 1.6em;
 
-    /* &:hover {
-        border: 1px var(--clr-primary-green) solid;
-        color: var(--clr-primary-green);
-    } */
+    &:hover {
+        border: 1px var(--primary-color2) solid;
+        color: var(--primary-color2);
+    }
 
     /* round btns */
     &.round {

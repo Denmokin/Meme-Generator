@@ -114,6 +114,14 @@ function renderMemeDownload() {
         meme.lines.forEach((line) => {
             drawText(line)
         })
+        const memeContent = gElCanvas.toDataURL()
+
+        // Creates a temporarily link
+        const link = document.createElement('a')
+        link.href = memeContent
+        link.download = 'my-meme.png'
+        link.click()
+        renderMeme()
     }
 }
 
@@ -148,13 +156,7 @@ function drawRect(x, y, height, width, color) {
     gCtx.setLineDash([])
 }
 
-function onDownloadMeme(el) {
+
+function onDownloadMeme() {
     renderMemeDownload()
-    setTimeout(() => {
-        const memeContent = gElCanvas.toDataURL();
-        el.href = memeContent
-        el.download = 'myMeme'
-    }, 500)
-
 }
-

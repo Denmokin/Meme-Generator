@@ -6,6 +6,7 @@ function onImgSelect(id) {
     const elGallery = document.querySelector('.gallery-container')
     elMemes.classList.remove('display-none')
     elGallery.classList.add('display-none')
+    onUpdateNav('memes')
     setImg(id)
 }
 

@@ -13,7 +13,7 @@
         text-transform: uppercase;
 
         &:hover {
-            color: red;
+            color: var(--primary-color2);
             text-decoration: underline;
         }
 
